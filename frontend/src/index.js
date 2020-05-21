@@ -9,6 +9,7 @@ import { ThemeProvider, CSSReset, ColorModeProvider, Flex } from '@chakra-ui/cor
 import Home from './pages/Home';
 import AuthPage from './pages/AuthPage';
 import CreateQuestion from './pages/CreateQuestion';
+import Footer from './components/Footer';
 
 //components
 
@@ -28,6 +29,7 @@ ReactDOM.render(
                 <Route exact component={AuthPage} path="/auth/:mode" />
                 <Route exact component={CreateQuestion} path="/createQuestion" />
               </Switch>
+              <Footer />
             </Router>
           </Flex>
         </ColorModeProvider>

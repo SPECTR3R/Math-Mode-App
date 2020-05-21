@@ -1,7 +1,15 @@
 import { useForm } from 'react-hook-form';
 import React from 'react';
-import { Box, FormErrorMessage, Textarea, FormLabel, FormControl, Input, Button } from '@chakra-ui/core';
-import Markdown from '../components/Markdown';
+import {
+  Box,
+  FormErrorMessage,
+  Textarea,
+  FormLabel,
+  FormControl,
+  Input,
+  Button,
+} from '@chakra-ui/core';
+//import Markdown from '../components/Markdown';
 
 export default function HookForm() {
   const { handleSubmit, errors, register, formState } = useForm();
@@ -45,14 +53,11 @@ export default function HookForm() {
         <FormErrorMessage>{errors.name && errors.name.message}</FormErrorMessage>
       </FormControl>
 
-      <Box>
-        <Markdown source={value} />
-      </Box>
+      <Box>ecu aca </Box>
 
       <Button mt={4} variantColor="teal" isLoading={formState.isSubmitting} type="submit">
         Submit
       </Button>
-      
     </form>
   );
 }

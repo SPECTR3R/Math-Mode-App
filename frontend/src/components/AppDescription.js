@@ -15,6 +15,8 @@ const AppDescription = () => {
       boxShadow="md"
       rounded="lg"
       p="4"
+      mb={20}
+
     >
       <Flex align="center" mx="2">
         <Image src="/images/icon1.svg" size="50px" />

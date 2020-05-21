@@ -1,24 +1,19 @@
 import React from 'react';
-import {
-  Box,
-  Tabs,
-  TabList,
-  Tab,
-  TabPanels,
-  TabPanel,
-  useColorMode,
-  Flex,
-} from '@chakra-ui/core';
+import { useParams } from 'react-router-dom';
+import { Box, Tabs, TabList, Tab, TabPanels, TabPanel, useColorMode, Flex } from '@chakra-ui/core';
+
 import SignupForm from '../components/SignupForm';
 import LoginForm from '../components/LoginForm';
-import NavbarLog2 from '../components/NavbarLog2';
+import Navbar from '../components/Navbar';
 
 const AuthPage = () => {
   const { colorMode } = useColorMode();
+  const { mode } = useParams();
+  console.log(mode);
   return (
     <>
-      <NavbarLog2 />
-      <Flex justify="center" align="center" mt= {4}>
+      <Navbar />
+      <Flex justify="center" align="center" mt={8} pos="relative" height="full">
         <Box
           bg={colorMode === 'light' ? 'gray.200' : 'gray.600'}
           w="350px"
@@ -28,15 +23,17 @@ const AuthPage = () => {
         >
           <Tabs variant="enclosed-colored" isFitted m={4}>
             <TabList>
-              <Tab>Sign Up</Tab>
-              <Tab>Login</Tab>
+              <Tab>{mode === 'login' ? 'Log in' : 'Sign up'}</Tab>
+              <Tab>{mode !== 'login' ? 'Log in' : 'Sign up'}</Tab>
             </TabList>
             <TabPanels mt={3}>
               <TabPanel>
-                <SignupForm />
+                {mode === 'login' && <LoginForm mode={mode} />}
+                {(mode === 'student' || mode === 'teacher') && <SignupForm mode={mode} />}
               </TabPanel>
               <TabPanel>
-                <LoginForm />
+                {mode === 'login' && <SignupForm mode={mode} />}
+                {(mode === 'student' || mode === 'teacher') && <LoginForm mode={mode} />}
               </TabPanel>
             </TabPanels>
           </Tabs>

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { Image, Box, Tabs, TabList, Tab, TabPanels, TabPanel, useColorMode } from '@chakra-ui/core';
+import {  Box, Tabs, TabList, Tab, TabPanels, TabPanel, useColorMode } from '@chakra-ui/core';
 
-import TestQuestion from '../components/TestQuestion';
+// import TestQuestion from '../components/TestQuestion';
 import ShortAnsForm from '../components/ShortAnsForm';
 
 const CreateQuestion = () => {
@@ -27,7 +27,7 @@ const CreateQuestion = () => {
             <ShortAnsForm />
           </TabPanel>
           <TabPanel>
-            <TestQuestion />
+            <ShortAnsForm />
           </TabPanel>
         </TabPanels>
       </Tabs>

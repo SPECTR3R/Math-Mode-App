@@ -1,35 +1,38 @@
 import React from 'react';
+import { Heading, Box } from '@chakra-ui/core';
+
 import NavbarLog from '../components/NavbarLog';
 import Navbar from '../components/Navbar';
 import AppDescription from '../components/AppDescription';
-import Markdown from '../components/Markdown';
+import MathRender from '../components/MathRender';
 
-import { Heading, Box,useColorMode } from '@chakra-ui/core';
 
 const Home = () => {
+  const ascii = '$$e^(ipi)+1=0$$';
 
-  const value = '$$\n x_{1,2} = \\frac{ -b\\pm\\sqrt{b^2-4ac}}{2a} \n $$';
   return (
     <>
       <Box w="100%" pos="sticky" top="0" zIndex={10}>
         <NavbarLog />
         <Navbar />
       </Box>
-      <Heading
-        mt={10}
-        mb={10}
-        as="h1"
-        fontSize="60px"
-        textAlign="center"
-        fontFamily="Varela Round"
-        fontWeight="900"
-      >
-        Math <br /> Mode.com
-      </Heading>
-      <Box fontSize="25px" mb={10}>
-        <Markdown source={value} />
+
+      <Box>
+        <Heading
+          my={10}
+          as="h1"
+          fontSize={['50px', '75px', '105px', '120px']}
+          fontFamily="Varela Round"
+          fontWeight="900"
+        >
+          Math <br /> &nbsp;&nbsp; Mode.com
+        </Heading>
       </Box>
-      <AppDescription></AppDescription>
+
+      <Box fontSize={['40px', '50px', '70px', '100px']} mb={10}>
+        <MathRender source={ascii} />
+      </Box>
+      <AppDescription/>
     </>
   );
 };
