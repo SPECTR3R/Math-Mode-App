@@ -1,4 +1,5 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 
 import {
   Input,
@@ -10,20 +11,49 @@ import {
   FormControl,
   FormHelperText,
 } from '@chakra-ui/core';
+
 const LoginForm = () => {
+  const { handleSubmit, errors, register, formState } = useForm();
+
+  const onSubmit = async values => {
+ //   const { login } = this.state
+  //  this.setState({ loading: true })
+  //  const response = await handleAsync(() => AUTH_SERVICE.LOGIN(login))
+  //  console.log(response)
+//if (response.err) {
+ //     this.setState({ msg: response.err.message })
+  //  } else {
+  //    this.setState({ loggedUser: response.user, msg: 'User logged' })
+ //   }
+  //  this.setState({ loading: false })
+  //  this.setState({ login: { email: '', password: '' } })
+  }
+
   return (
-    <form action="submit">
+    <form onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
         <FormControl isRequired>
           <InputGroup>
             <InputLeftElement children={<Icon name="email" />} />
-            <Input type="email" placeholder="Email" aria-label="Email" />
+            <Input
+              name="email"
+              type="email"
+              placeholder="Correo electrónico"
+              aria-label="Email"
+              ref={register()}
+            />
           </InputGroup>
         </FormControl>
         <FormControl isRequired>
           <InputGroup>
             <InputLeftElement children={<Icon name="lock" />} />
-            <Input type="password" placeholder="Password" aria-label="Password" />
+            <Input
+              name="password"
+              type="password"
+              placeholder="Contraseña"
+              aria-label="Password"
+              ref={register()}
+            />
           </InputGroup>
         </FormControl>
         <Button
@@ -32,10 +62,10 @@ const LoginForm = () => {
           _hover={{ boxShadow: 'md' }}
           _active={{ boxShadow: 'lg' }}
         >
-          Login
+          Inicia Sesión
         </Button>
         <FormHelperText textAlign="center">
-          Welcome Home!
+          ¡Bienvenido de vuelta!
           <br />
           🏠
         </FormHelperText>

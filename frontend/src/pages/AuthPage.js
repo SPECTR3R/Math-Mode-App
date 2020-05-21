@@ -28,12 +28,12 @@ const AuthPage = () => {
             </TabList>
             <TabPanels mt={3}>
               <TabPanel>
-                {mode === 'login' && <LoginForm mode={mode} />}
+                {mode === 'login' && <LoginForm />}
                 {(mode === 'student' || mode === 'teacher') && <SignupForm mode={mode} />}
               </TabPanel>
               <TabPanel>
                 {mode === 'login' && <SignupForm mode={mode} />}
-                {(mode === 'student' || mode === 'teacher') && <LoginForm mode={mode} />}
+                {(mode === 'student' || mode === 'teacher') && <LoginForm />}
               </TabPanel>
             </TabPanels>
           </Tabs>
