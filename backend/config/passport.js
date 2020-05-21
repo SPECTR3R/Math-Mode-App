@@ -22,9 +22,11 @@ passport.use(
     let user = await User.findOne({ facebookId: profile.id });
     if (!user) {
       user = await User.create({
-        name: `${profile.name.givenName} ${profile.name.familyName}`,
+        firstName: `${profile.name.givenName} ${profile.name.familyName}`,
+        lastName: `${profile.name.givenName} ${profile.name.familyName}`,
         facebookId: profile.id,
         email: profile.emails[0].value,
+        imgURL: profile.photos[0].value,
       });
       return done(null, user);
     } else {
@@ -38,9 +40,11 @@ passport.use(
     let user = await User.findOne({ googleId: profile.id });
     if (!user) {
       user = await User.create({
-        name: profile.displayName,
+        firstName: profile.displayName,
         googleId: profile.id,
         email: profile.emails[0].value,
+        imgURL: profile.photos[0].value,
+
       });
       return done(null, user);
     } else {

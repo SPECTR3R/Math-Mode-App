@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useHistory } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import AUTH_SERVICE from '../services/auth';
-import handleAsync from '../services/handleAsync';
+import { useAuth } from '../services/AuthService';
 
 import {
   Input,
@@ -16,34 +16,20 @@ import {
 
 const LoginForm = () => {
   const { handleSubmit, register } = useForm();
-
-  const [loading, setLoading] = useState(false);
-
-  function toggleLoading() {
-    console.log('posi');
-    setLoading(prevloading => !prevloading);
-  }
+  const auth = useAuth();
+  const history = useHistory();
 
   const onSubmit = async values => {
-    toggleLoading();
-    console.log('cargando?', loading);
+    console.log(values);
 
-    const response = await handleAsync(() => AUTH_SERVICE.LOGIN(values));
-    console.log(response);
+    const response = await auth.login(values);
     if (response.err) {
       console.log(response.err.message);
     } else {
       console.log(response.user);
-
-      this.setState(response.user);
+      history.push('/profile');
     }
-    toggleLoading();
-    console.log('cargando?', loading);
   };
-
-  useEffect(() => {
-    setLoading(prevloading => (prevloading ? false : true));
-  }, []);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

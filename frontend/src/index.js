@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import { ContextProvider } from './services/ContextProvider';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ThemeProvider, CSSReset, ColorModeProvider, Flex } from '@chakra-ui/core';
 
@@ -9,13 +8,19 @@ import { ThemeProvider, CSSReset, ColorModeProvider, Flex } from '@chakra-ui/cor
 import Home from './pages/Home';
 import AuthPage from './pages/AuthPage';
 import CreateQuestion from './pages/CreateQuestion';
-import Footer from './components/Footer';
+import Profile from './pages/Profile';
 
 //components
+import Footer from './components/Footer';
+import PrivateRoute from './components/PrivateRoute';
+
+//Hooks
+import { ProvideAuth } from "./services/AuthService"
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <ContextProvider>
+    <ProvideAuth>
       <ThemeProvider>
         <ColorModeProvider>
           <Flex direction="column" align="center" justify="center">
@@ -27,14 +32,16 @@ ReactDOM.render(
               <Switch>
                 <Route exact component={Home} path="/" />
                 <Route exact component={AuthPage} path="/auth/:mode" />
-                <Route exact component={CreateQuestion} path="/createQuestion" />
+                <PrivateRoute exact component={CreateQuestion} path="/createQuestion" />
+                <PrivateRoute exact component={Profile} path="/profile" />
+
               </Switch>
               <Footer />
             </Router>
           </Flex>
         </ColorModeProvider>
       </ThemeProvider>
-    </ContextProvider>
+    </ProvideAuth>
   </React.StrictMode>,
 
   document.getElementById('root')

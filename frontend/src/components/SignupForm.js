@@ -1,8 +1,10 @@
 import React from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useAuth } from '../services/AuthService';
 
 import {
   Input,
-  Box,
   Stack,
   Icon,
   InputGroup,
@@ -13,33 +15,75 @@ import {
   FormHelperText,
 } from '@chakra-ui/core';
 const SignupForm = () => {
+  const { mode } = useParams();
+  const { handleSubmit, register } = useForm();
+  const auth = useAuth();
+  const history = useHistory();
+
+  const onSubmit = async values => {
+    values.role = mode;
+    console.log(values);
+
+    const response = await auth.signup(values);
+    if (response.err) {
+      console.log(response.err.message);
+    } else {
+      console.log(response.user);
+      history.push('/profile');
+    }
+  };
+
   return (
     <>
-      <form action="submit">
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3}>
           <FormControl isRequired>
             <InputGroup>
               <InputLeftElement children={<Icon name="info" />} />
-              <Input type="name" placeholder="First name" aria-label="First name" />
+              <Input
+                type="text"
+                name="firstName"
+                placeholder="Nombre"
+                aria-label="firstName"
+                ref={register()}
+              />
             </InputGroup>
           </FormControl>
           <FormControl isRequired>
             <InputGroup>
               <InputLeftElement children={<Icon name="info" />} />
-              <Input type="name" placeholder="Last name" aria-label="Last name" />
+              <Input
+                type="text"
+                name="lastName"
+                placeholder="Apellido"
+                aria-label="lastName"
+                ref={register()}
+              />
             </InputGroup>
           </FormControl>
           <Divider borderColor="gray.300" />
           <FormControl isRequired>
             <InputGroup>
               <InputLeftElement children={<Icon name="email" />} />
-              <Input type="email" placeholder="Email" aria-label="Email" />
+              <Input
+                name="email"
+                type="email"
+                placeholder="Correo electrónico"
+                aria-label="Email"
+                ref={register()}
+              />
             </InputGroup>
           </FormControl>
           <FormControl isRequired>
             <InputGroup>
               <InputLeftElement children={<Icon name="lock" />} />
-              <Input type="password" placeholder="Password" aria-label="Password" />
+              <Input
+                name="password"
+                type="password"
+                placeholder="Contraseña"
+                aria-label="Password"
+                ref={register()}
+              />
             </InputGroup>
           </FormControl>
           <Button
@@ -51,13 +95,16 @@ const SignupForm = () => {
             Sign up!
           </Button>
           <FormHelperText textAlign="center">
-            We will never share your email!
+            ¡Bienvenido!{' '}
+            <span role="img" aria-label="crossedFingers">
+              🤞🏼
+            </span>
             <br />
-            🤞🏼
+            Te estás registrando como {mode === 'teacher' ? 'Educador' : 'Estudiante'}
           </FormHelperText>
         </Stack>
       </form>
-      <br/>
+      <br />
     </>
   );
 };

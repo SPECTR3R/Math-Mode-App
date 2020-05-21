@@ -3,8 +3,8 @@ const User = require('../models/User');
 const passport = require('../config/passport');
 
 exports.signup = async (req, res) => {
-  const { name, email, password } = req.body;
-  const user = await User.register({ name, email }, password);
+  const { firstName, lastName, email, role, password } = req.body;
+  const user = await User.register({ firstName, lastName, email, role }, password);
   res.status(201).json({ user, msg: 'User created' });
 };
 
@@ -27,7 +27,6 @@ exports.facebookCb = (req, res, next) => {
     if (!user) return res.status(401).json({ err, info });
     req.login(user, error => {
       if (error) return res.status(401).json({ error });
-      //return res.redirect('http://localhost:3001/?status=success');
       return res.redirect(process.env.FRONTEND_ENDPOINT + '/?status=success');
     });
   })(req, res, next);
@@ -43,7 +42,6 @@ exports.googleCb = (req, res, next) => {
     if (!user) return res.status(401).json({ err, info });
     req.login(user, error => {
       if (error) return res.status(401).json({ error });
-      //  return res.redirect('http://localhost:3001/?status=success');
       return res.redirect(process.env.FRONTEND_ENDPOINT + '/?status=success');
     });
   })(req, res, next);

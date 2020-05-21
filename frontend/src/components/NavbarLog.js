@@ -1,10 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
+import { Link } from 'react-router-dom';
+import { useAuth } from '../services/AuthService';
 import { Text, Button, Flex, useColorMode } from '@chakra-ui/core';
 
 const NavbarLog = () => {
   const { colorMode } = useColorMode();
+  const { user } = useAuth();
 
   return (
     <Flex w="full" bg={colorMode === 'light' ? 'white' : 'gray.800'} height="70px" justify="center">
@@ -20,7 +22,7 @@ const NavbarLog = () => {
           _hover={{ boxShadow: 'md' }}
           _active={{ boxShadow: 'lg' }}
         >
-          <Link to="/auth/login">Ingresar ›</Link>
+          <Link to={user ? '/profile' : '/auth/login'}>{user ? 'Tu perfil ›' : 'Ingresar ›'}</Link>
         </Button>
       </Flex>
     </Flex>
