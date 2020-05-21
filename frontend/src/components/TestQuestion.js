@@ -1,42 +1,50 @@
 import React from 'react';
 import {
-  Box,
-  Textarea,
-  FormControl,
-  MenuItem,
-  MenuList,
-  Menu,
-  MenuButton,
-  FormLabel,
+  Input,
+  Stack,
+  Icon,
+  InputGroup,
+  InputLeftElement,
   Button,
-  MenuItemOption,
-  FormErrorMessage,
-  MenuOptionGroup,
-  FormHelperText,
+  FormControl,
+  Textarea,
 } from '@chakra-ui/core';
-import Markdown from '../components/Markdown';
 
-const TestQuestion = ({ handleChange, value }) => {
+const ShortAnsForm = ({ handleChange, value }) => {
   return (
-    <>
-      <Box p="50px" m="20px" w="80%" h="100%" boxShadow="lg" rounded="lg">
-        <Menu closeOnSelect={false}>
-          <MenuButton as={Button} variantColor="blue">
-            Tipo
-          </MenuButton>
-          <MenuList minWidth="240px">
-            <MenuOptionGroup title="Seleccione el tipo de pregunta" type="checkbox">
-              <MenuItemOption value="Respuesta corta">Respuesta corta</MenuItemOption>
-              <MenuItemOption value="verdadero/falso">Verdadero/Falso</MenuItemOption>
-              <MenuItemOption value="Opción multiple">Opción multiple</MenuItemOption>
-              <MenuItemOption value="Respuesta multiole">Respuesta multiple</MenuItemOption>
-            </MenuOptionGroup>
-          </MenuList>
-        </Menu>
-        <Textarea value={value} onChange={handleChange} size="sm" resize="vertical"  placeholder="Texto de la pregunta" />
-      </Box>
-    </>
+    <form action="submit">
+      <Stack spacing={3}>
+        <FormControl isRequired>
+          <Textarea
+            value={value}
+            onChange={handleChange}
+            size="sm"
+            resize="vertical"
+            placeholder="Texto de la pregunta"
+          />
+        </FormControl>
+        <FormControl isRequired>
+          <InputGroup>
+            <InputLeftElement children={<Icon name="email" />} />
+            <Input type="email" placeholder="Texto de la pregunta" aria-label="question" />
+f          </InputGroup>
+        </FormControl>
+        <Button
+          type="submit"
+          boxShadow="sm"
+          _hover={{ boxShadow: 'md' }}
+          _active={{ boxShadow: 'lg' }}
+        >
+          Guardar Pregunta
+        </Button>
+      </Stack>
+    </form>
   );
 };
 
-export default TestQuestion;
+export default ShortAnsForm;
+
+
+
+
+

@@ -1,21 +1,36 @@
-import React, { Component } from 'react';
+import React from 'react';
 import NavbarLog from '../components/NavbarLog';
-import NavbarSig from '../components/NavbarSig';
-import { Heading, Stack, PseudoBox, useColorMode, IconButton, Box, Image } from '@chakra-ui/core';
+import Navbar from '../components/Navbar';
+import AppDescription from '../components/AppDescription';
+import Markdown from '../components/Markdown';
 
-export default class Home extends Component {
-  render() {
-    return (
-      <div>
-        <NavbarLog></NavbarLog>
-        <NavbarSig></NavbarSig>
+import { Heading, Box,useColorMode } from '@chakra-ui/core';
 
-        <Heading mt= {10} as="h1" fontSize="50px" textAlign="center" fontFamily="Varela Round" fontWeight="900">
-          Math <br /> Mode.com
-        </Heading>
+const Home = () => {
 
-        
-      </div>
-    );
-  }
-}
+  const value = '$$\n x_{1,2} = \\frac{ -b\\pm\\sqrt{b^2-4ac}}{2a} \n $$';
+  return (
+    <>
+      <Box w="100%" pos="sticky" top="0" zIndex={10}>
+        <NavbarLog />
+        <Navbar />
+      </Box>
+      <Heading
+        mt={10}
+        mb={10}
+        as="h1"
+        fontSize="60px"
+        textAlign="center"
+        fontFamily="Varela Round"
+        fontWeight="900"
+      >
+        Math <br /> Mode.com
+      </Heading>
+      <Box fontSize="25px" mb={10}>
+        <Markdown source={value} />
+      </Box>
+      <AppDescription></AppDescription>
+    </>
+  );
+};
+export default Home;
