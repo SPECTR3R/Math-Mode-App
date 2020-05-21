@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import AUTH_SERVICE from '../services/auth';
+import handleAsync from '../services/handleAsync';
 
 import {
   Input,
@@ -13,21 +15,35 @@ import {
 } from '@chakra-ui/core';
 
 const LoginForm = () => {
-  const { handleSubmit, errors, register, formState } = useForm();
+  const { handleSubmit, register } = useForm();
+
+  const [loading, setLoading] = useState(false);
+
+  function toggleLoading() {
+    console.log('posi');
+    setLoading(prevloading => !prevloading);
+  }
 
   const onSubmit = async values => {
- //   const { login } = this.state
-  //  this.setState({ loading: true })
-  //  const response = await handleAsync(() => AUTH_SERVICE.LOGIN(login))
-  //  console.log(response)
-//if (response.err) {
- //     this.setState({ msg: response.err.message })
-  //  } else {
-  //    this.setState({ loggedUser: response.user, msg: 'User logged' })
- //   }
-  //  this.setState({ loading: false })
-  //  this.setState({ login: { email: '', password: '' } })
-  }
+    toggleLoading();
+    console.log('cargando?', loading);
+
+    const response = await handleAsync(() => AUTH_SERVICE.LOGIN(values));
+    console.log(response);
+    if (response.err) {
+      console.log(response.err.message);
+    } else {
+      console.log(response.user);
+
+      this.setState(response.user);
+    }
+    toggleLoading();
+    console.log('cargando?', loading);
+  };
+
+  useEffect(() => {
+    setLoading(prevloading => (prevloading ? false : true));
+  }, []);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
