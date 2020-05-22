@@ -20,13 +20,10 @@ const LoginForm = () => {
   const history = useHistory();
 
   const onSubmit = async values => {
-    console.log(values);
-
     const response = await auth.login(values);
     if (response.err) {
       console.log(response.err.message);
     } else {
-      console.log(response.user);
       history.push('/profile');
     }
   };

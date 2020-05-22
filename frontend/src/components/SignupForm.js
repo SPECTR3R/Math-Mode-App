@@ -22,20 +22,18 @@ const SignupForm = () => {
 
   const onSubmit = async values => {
     values.role = mode;
-    console.log(values);
 
     const response = await auth.signup(values);
     if (response.err) {
       console.log(response.err.message);
     } else {
-      console.log(response.user);
       history.push('/profile');
     }
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} >
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3}>
           <FormControl isRequired>
             <InputGroup>

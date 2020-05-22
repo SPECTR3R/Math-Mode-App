@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import React from 'react';
+import { CREATE_QUESTION } from '../services/questions';
 
 import {
   Box,
@@ -26,7 +27,7 @@ export default function HookForm() {
       questionCreator: 'yomero',
       questionSource: questionAnswer,
     };
-    console.log(data);
+    CREATE_QUESTION(data);
   }
 
   return (

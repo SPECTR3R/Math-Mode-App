@@ -6,7 +6,6 @@ import AuthPage from '../pages/AuthPage'
 const PrivateRoute = ({ component, ...options }) => {
   const history = useHistory();
   const { user } = useAuth();
-  console.log('este es', user);
   if (!user) {
     history.push('/auth/login');
     return <Route {...options} component={AuthPage} />;

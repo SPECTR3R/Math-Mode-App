@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const uploadConfig = require('../config/cloudinary');
 
 // call controllers
 

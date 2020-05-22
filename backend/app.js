@@ -52,5 +52,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 // auth routes
 app.use('/', require('./routes/auth'));
+app.use('/', require('./routes/index'));
 
 module.exports = app;

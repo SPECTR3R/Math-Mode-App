@@ -21,7 +21,6 @@ import Navbar from '../components/Navbar';
 const AuthPage = () => {
   const { colorMode } = useColorMode();
   const { mode } = useParams();
-  console.log(mode);
   return (
     <>
       <Navbar />

@@ -26,7 +26,6 @@ const Profile = () => {
   const { colorMode } = useColorMode();
   const { handleSubmit, register } = useForm();
 
-  console.log(user);
 
   const onSubmit = async values => {
     console.log(values);
