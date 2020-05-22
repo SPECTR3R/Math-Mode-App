@@ -26,7 +26,13 @@ const app = express();
 // cors config
 app.use(
   cors({
-    origin: [process.env.FRONTEND_ENDPOINT,'http://localhost:3001'],
+    origin: [
+      'http://localhost:3001',
+      'http://localhost:3000',
+      'http://192.168.100.40:3000',
+      'http://192.168.100.40:3001',
+      'https://mathmode.now.sh',
+    ],
     credentials: true,
   })
 );
@@ -38,13 +44,13 @@ app.use(
     saveUninitialized: true,
   })
 );
-app.use(passport.initialize())
-app.use(passport.session())
-app.use(logger('dev'))
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(cookieParser())
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 // auth routes
-app.use('/', require('./routes/auth'))
+app.use('/', require('./routes/auth'));
 
-module.exports = app
+module.exports = app;

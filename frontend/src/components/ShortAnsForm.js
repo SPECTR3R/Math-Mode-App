@@ -9,22 +9,14 @@ import {
   Input,
   Button,
 } from '@chakra-ui/core';
-//import Markdown from '../components/Markdown';
+import MathRender from '../components/MathRender';
 
 export default function HookForm() {
   const { handleSubmit, errors, register, formState } = useForm();
   const [value, setValue] = React.useState('');
   const handleChange = event => setValue(event.target.value);
 
-  // function validate(value) {
-  //   let error;
-  //   if (!value) {
-  //     error = 'Name is required';
-  //   } else if (value !== 'Naruto') {
-  //     error = 'Debes rellernar este campo! 😱';
-  //   }
-  //   return error || true;
-  // }
+
 
   function onSubmit(values) {
     setTimeout(() => {

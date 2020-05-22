@@ -4,8 +4,8 @@ import handleAsync from '../services/handleAsync';
 
 //Axios config
 import axios from 'axios';
-//const baseURL = 'http://localhost:3000';
-const baseURL = 'https://dry-meadow-59109.herokuapp.com/';
+const baseURL = 'http://localhost:3000';
+//const baseURL = 'https://dry-meadow-59109.herokuapp.com/';
 const service = axios.create({
   baseURL,
   withCredentials: true,
@@ -26,7 +26,6 @@ export const useAuth = () => {
 
 // Provider hook that creates auth object and handles state
 function useProvideAuth() {
-
   const [user, setUser] = useState(null);
 
   const signup = async data => {
@@ -36,7 +35,7 @@ function useProvideAuth() {
   };
 
   const login = async data => {
-    console.log(data)
+    console.log(data);
     const response = await handleAsync(() => service.post('/login', data));
     setUser(response.user);
     return response;
@@ -45,6 +44,12 @@ function useProvideAuth() {
   const logout = async data => {
     await handleAsync(() => service.get('/logout'));
     return setUser(false);
+  };
+
+  const currentUser = async data => {
+    const response = await handleAsync(() => service.get('/currentUser'));
+    setUser(response.user);
+    return response.user;
   };
 
   // Subscribe to user on mount and cleanup subscription on unmount
@@ -62,5 +67,6 @@ function useProvideAuth() {
     login,
     signup,
     logout,
+    currentUser,
   };
 }

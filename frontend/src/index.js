@@ -32,7 +32,7 @@ ReactDOM.render(
               <Switch>
                 <Route exact component={Home} path="/" />
                 <Route exact component={AuthPage} path="/auth/:mode" />
-                <PrivateRoute exact component={CreateQuestion} path="/createQuestion" />
+                <Route exact component={CreateQuestion} path="/createQuestion" />
                 <PrivateRoute exact component={Profile} path="/profile" />
 
               </Switch>

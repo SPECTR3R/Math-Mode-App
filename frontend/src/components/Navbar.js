@@ -43,23 +43,39 @@ const Navbar = () => {
             </Link>
           )}
         </Box>
-        {!user && <MenuSignup colorMode={colorMode} />}
+        <div>
+          {!user && <MenuSignup colorMode={colorMode} />}
 
-        {user && (
-          <Button
-            size="sm"
-            bg={colorMode === 'light' ? 'white' : 'gray.800'}
-            boxShadow="sm"
-            _hover={{ bg: 'gray.400' }}
-            _active={{ boxShadow: 'lg' }}
-            onClick={() => {
-              logout();
-              history.push('/');
-            }}
-          >
-            ‹‹ Cerrar sesión
-          </Button>
-        )}
+          {user && location.pathname !== '/profile' && (
+            <Link to="/profile">
+              <Button
+                mr="5px"
+                size="sm"
+                bg={colorMode === 'light' ? 'white' : 'gray.800'}
+                boxShadow="sm"
+                _hover={{ bg: 'gray.400' }}
+                _active={{ boxShadow: 'lg' }}
+              >
+                ‹ Tu perfil
+              </Button>
+            </Link>
+          )}
+          {user  && (
+            <Button
+              size="sm"
+              bg={colorMode === 'light' ? 'white' : 'gray.800'}
+              boxShadow="sm"
+              _hover={{ bg: 'gray.400' }}
+              _active={{ boxShadow: 'lg' }}
+              onClick={() => {
+                logout();
+                history.push('/');
+              }}
+            >
+              ‹‹ Cerrar sesión
+            </Button>
+          )}
+        </div>
       </Flex>
     </Flex>
   );

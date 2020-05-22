@@ -35,7 +35,7 @@ const SignupForm = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} >
         <Stack spacing={3}>
           <FormControl isRequired>
             <InputGroup>
