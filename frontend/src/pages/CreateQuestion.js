@@ -4,7 +4,6 @@ import {
   Flex,
   Box,
   Tabs,
-  Stack,
   TabList,
   Divider,
   Tab,
@@ -22,7 +21,6 @@ const CreateQuestion = () => {
   return (
     <>
       <Navbar />
-
       <Flex
         w={['90%', '90%', '80%', '70%']}
         p={3}

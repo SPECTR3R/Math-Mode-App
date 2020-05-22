@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import React from 'react';
 import { CREATE_QUESTION } from '../services/questions';
+import { useHistory } from 'react-router-dom';
 
 import {
   Box,
@@ -14,6 +15,8 @@ import {
 import MathRender from '../components/MathRender';
 
 export default function HookForm() {
+  const history = useHistory();
+
   const { handleSubmit, errors, register, formState } = useForm();
   const [value, setValue] = React.useState('');
   const [value2, setValue2] = React.useState('');
@@ -21,13 +24,16 @@ export default function HookForm() {
   const handleChange = event => setValue(event.target.value);
   const handleChange2 = event => setValue2(event.target.value);
 
-  function onSubmit({ questionSource, questionAnswer }) {
+  async function  onSubmit({ questionSource, questionAnswer }) {
+
     const data = {
       questionType: 'shortAns',
       questionCreator: 'yomero',
-      questionSource: questionAnswer,
+      questionAnswer,
+      questionSource: [questionSource[0]],
     };
-    CREATE_QUESTION(data);
+    await CREATE_QUESTION(data);
+    history.push('/createTest');
   }
 
   return (

@@ -8,6 +8,8 @@ import { ThemeProvider, CSSReset, ColorModeProvider, Flex } from '@chakra-ui/cor
 import Home from './pages/Home';
 import AuthPage from './pages/AuthPage';
 import CreateQuestion from './pages/CreateQuestion';
+import CreateTest from './pages/CreateTest';
+
 import Profile from './pages/Profile';
 
 //components
@@ -15,8 +17,7 @@ import Footer from './components/Footer';
 import PrivateRoute from './components/PrivateRoute';
 
 //Hooks
-import { ProvideAuth } from "./services/AuthService"
-
+import { ProvideAuth } from './services/AuthService';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -33,8 +34,8 @@ ReactDOM.render(
                 <Route exact component={Home} path="/" />
                 <Route exact component={AuthPage} path="/auth/:mode" />
                 <PrivateRoute exact component={CreateQuestion} path="/createQuestion" />
-                <PrivateRoute exact component={Profile} path="/profile" />
-
+                <PrivateRoute exact component={CreateTest} path="/createTest" />
+                <Route exact component={Profile} path="/profile" />
               </Switch>
               <Footer />
             </Router>
