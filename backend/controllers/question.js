@@ -12,13 +12,13 @@ exports.createQuestion = async (req, res) => {
   res.status(201).json({ question });
 };
 
-exports.readQuestions = async (req, res) => {
-  const questions = await Question.find({}).populate('author');
+exports.viewQuestions = async (req, res) => {
+  const questions = await Question.find({}).populate('questionCreator');
   res.status(200).json({ questions });
 };
 
-exports.readQuestion = async (req, res) => {
-  const question = await Question.findById(req.params.id).populate('author');
+exports.viewQuestion = async (req, res) => {
+  const question = await Question.findById(req.params.id).populate('questionCreator');
   res.status(200).json({ question });
 };
 

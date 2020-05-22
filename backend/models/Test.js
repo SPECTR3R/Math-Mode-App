@@ -1,18 +1,25 @@
-const { model, Schema } = require("mongoose");
+const { model, Schema } = require('mongoose');
 
 const testSchema = new Schema(
   {
-    testType: { type: String, enum: ['shortAns', 'boolAns','multAns','multOpt'], default: 'shortAns' },
     testCreator: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
     },
-    students: [{
-      studentID:{ type: Schema.Types.ObjectId,
-      ref: "User"}
-
-    }]
-    testAnswer: Array
+    testName: String,
+    testQuestions: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Question',
+      },
+    ],
+    testAnswers: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: 'Answers',
+      },
+    ],
+    dueDate: Date,
   },
   {
     versionKey: false,
@@ -20,4 +27,4 @@ const testSchema = new Schema(
   }
 );
 
-module.exports = model("Test", testSchema);
+module.exports = model('Test', testSchema);
