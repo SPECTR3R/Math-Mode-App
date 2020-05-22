@@ -27,11 +27,11 @@ const app = express();
 app.use(
   cors({
     origin: [
+      'https://mathmode.now.sh/',
       'http://localhost:3001',
       'http://localhost:3000',
       'http://192.168.100.40:3000',
       'http://192.168.100.40:3001',
-      'https://mathmode.now.sh',
     ],
     credentials: true,
   })

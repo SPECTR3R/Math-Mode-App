@@ -51,8 +51,8 @@ const AppDescription = () => {
             MathMode es para todos
           </Text>
           <Text as="h3" fontWeight="light" fontSize="lg">
-            Gracias a su diseño responsivo y su potente generador grafico, puedes estar seguro de
-            que tus alumnos podran visuliazar a la perfeccion incluso en sus disposistvios moviles
+            Gracias a su diseño responsivo y su potente generador gráfico, puedes estar seguro de
+            que tus alumnos podrán visualizar el examen a la perfección, incluso en sus dispositivos móviles
           </Text>
         </Box>
       </Flex>
