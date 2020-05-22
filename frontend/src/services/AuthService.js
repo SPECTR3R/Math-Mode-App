@@ -4,8 +4,8 @@ import handleAsync from '../services/handleAsync';
 
 //Axios config
 import axios from 'axios';
-const baseURL = 'http://localhost:3000';
-//const baseURL = 'https://dry-meadow-59109.herokuapp.com/';
+//const baseURL = 'http://localhost:3000';
+const baseURL = 'https://polar-woodland-94575.herokuapp.com/';
 const service = axios.create({
   baseURL,
   withCredentials: true,
