@@ -26,7 +26,7 @@ const app = express();
 // cors config
 app.use(
   cors({
-    origin: [process.env.FRONTEND_ENDPOINT],
+    origin: [process.env.FRONTEND_ENDPOINT,'http://localhost:3001'],
     credentials: true,
   })
 );
