@@ -21,6 +21,11 @@ const AuthPage = () => {
           boxShadow="sm"
           rounded="lg"
         >
+          <section>
+            <a href="https://dry-meadow-59109.herokuapp.com/facebook">Login with Facebook</a>
+           <br/>
+            <a href="https://dry-meadow-59109.herokuapp.com/google">Login with Google</a>
+          </section>
           <Tabs variant="enclosed-colored" isFitted m={4}>
             <TabList>
               <Tab>{mode === 'login' ? 'Log in' : 'Sign up'}</Tab>
