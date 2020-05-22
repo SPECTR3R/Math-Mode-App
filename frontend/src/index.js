@@ -33,9 +33,9 @@ ReactDOM.render(
               <Switch>
                 <Route exact component={Home} path="/" />
                 <Route exact component={AuthPage} path="/auth/:mode" />
+                <PrivateRoute exact component={Profile} path="/profile" />
                 <PrivateRoute exact component={CreateQuestion} path="/createQuestion" />
-                <PrivateRoute exact component={CreateTest} path="/createTest" />
-                <Route exact component={Profile} path="/profile" />
+                <Route exact component={CreateTest} path="/createTest" />
               </Switch>
               <Footer />
             </Router>
