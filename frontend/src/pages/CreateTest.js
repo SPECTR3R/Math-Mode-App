@@ -23,17 +23,16 @@ const CreateTest = () => {
   const { colorMode } = useColorMode();
   const { handleSubmit, register } = useForm();
 
-  const [questions, setQuestions] = useState({});
+  const [questions, setQuestions] = useState();
 
-  useEffect(
-    () => async () => {
+  useEffect(() => {
+    const updateQuestions = async () => {
       const res = await GET_QUESTIONS();
-      console.log(res);
-      setQuestions(res.data.questions);
-    },
-
-    []
-  );
+      setQuestions(res.data);
+      console.log(questions);
+    };
+    updateQuestions();
+  }, []);
 
   const onSubmit = async values => {
     console.log(values);
@@ -100,15 +99,17 @@ const CreateTest = () => {
               Seleccionar
             </Text>
           </Flex>
-          <FormControl>
-            <QuestionDetail
-              colorMode={colorMode}
-              question={questions[0].questionSource}
-              answer={'nose'}
-              register={register}
-              selOrder={0}
-            />
-          </FormControl>
+          {questions.map(question => (
+            <FormControl>
+              <QuestionDetail
+                colorMode={colorMode}
+                question={question.questionSource} //questions[0].questionSource}
+                answer={question.questionAnswer}
+                register={register}
+                selOrder={0}
+              />
+            </FormControl>
+          ))}
 
           <Button
             type="submit"
