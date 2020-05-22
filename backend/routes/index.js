@@ -5,8 +5,8 @@ const router = express.Router();
 
 const {
   createQuestion,
-  readQuestions,
-  readQuestion,
+  viewQuestions,
+  viewQuestion,
   editQuestion,
   deleteQuestion,
 } = require('../controllers/question');

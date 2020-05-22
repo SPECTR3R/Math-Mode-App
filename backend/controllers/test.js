@@ -20,7 +20,7 @@ exports.viewTests = async (req, res) => {
 };
 
 exports.viewTest = async (req, res) => {
-  const test = await Test.findById(req.params.id).populate('testAnswers')populate('testQuestions');
+  const test = await Test.findById(req.params.id).populate('testAnswers').populate('testQuestions');
   res.status(200).json({ test });
 };
 
