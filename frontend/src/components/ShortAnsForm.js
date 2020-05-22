@@ -29,8 +29,8 @@ export default function HookForm() {
     const data = {
       questionType: 'shortAns',
       questionCreator: 'yomero',
-      questionAnswer,
-      questionSource: [questionSource[0]],
+      questionAnswer:[questionAnswer],
+      questionSource,
     };
     await CREATE_QUESTION(data);
     history.push('/createTest');
